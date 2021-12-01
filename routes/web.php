@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\TshirtController;
+// need correct path to find new Controller!
+use App\Http\Controllers\TshirtController;
 
 /*
 |--------------------------------------------------------------------------
