@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Laravel 8 CRUD - TShirt Collection</h2>
+                <h2>TShirt Collection App - Laravel 8 CRUD</h2>
             </div>
             <div class="pull-right">
                 <a class="btn btn-success" href="{{ route('tshirts.create') }}" title="Create a tshirt"> <i class="fas fa-plus-circle"></i>
@@ -21,7 +21,7 @@
 
     <table class="table table-bordered table-responsive-lg">
         <tr>
-            <th>Num</th>
+            <th>No</th>
             <th>Name</th>
             <th>Background Color</th>
             <th>Country Purchased</th>
