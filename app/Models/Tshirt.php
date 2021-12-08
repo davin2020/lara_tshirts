@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Tshirt extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
     protected $table = 'tshirts';
     public $timestamps = true;
@@ -21,6 +23,7 @@ class Tshirt extends Model
         'name',
         'bkg_colour',
         'country_purchased',
+        'image',
         'created_at'
     ];
 }
