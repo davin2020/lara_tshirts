@@ -25,6 +25,7 @@
             <th>Name</th>
             <th>Background Color</th>
             <th>Country Purchased</th>
+            <th>Image</th>
             <th>Date Created</th>
             <th width="280px">Action</th>
         </tr>
@@ -34,12 +35,13 @@
                 <td>{{ $tshirt->name }}</td>
                 <td>{{ $tshirt->bkg_colour }}</td>
                 <td>{{ $tshirt->country_purchased }}</td>
+                <td><img src="/uploads/{{ $tshirt->image }}" width="200px"></td>
                 <td>{{ date_format($tshirt->created_at, 'jS M Y') }}</td>
                 <td>
                     <form action="{{ route('tshirts.destroy', $tshirt->id) }}" method="POST">
 
                         <a href="{{ route('tshirts.show', $tshirt->id) }}" title="show">
-                            <i class="fas fa-eye text-success  fa-lg"></i>
+                            <i class="fas fa-eye text-success fa-lg"></i>
                         </a>
 
                         <a href="{{ route('tshirts.edit', $tshirt->id) }}">
@@ -52,7 +54,6 @@
 
                         <button type="submit" title="delete" style="border: none; background-color:transparent;">
                             <i class="fas fa-trash fa-lg text-danger"></i>
-
                         </button>
                     </form>
                 </td>

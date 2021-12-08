@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Edit Product</h2>
+                <h2>Edit TShirt</h2>
             </div>
             <div class="pull-right">
                 <a class="btn btn-primary" href="{{ route('tshirts.index') }}" title="Go back"> <i class="fas fa-backward "></i> </a>
@@ -23,7 +23,7 @@
         </div>
     @endif
 
-    <form action="{{ route('tshirts.update', $tshirt->id) }}" method="POST">
+    <form action="{{ route('tshirts.update', $tshirt->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
@@ -46,6 +46,13 @@
                     <strong>Country Purchased:</strong>
                     <input type="text" name="country_purchased" class="form-control" placeholder="{{ $tshirt->country_purchased }}"
                         value="{{ $tshirt->country_purchased }}">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Image:</strong>
+                    <input type="file" name="image" class="form-control" placeholder="Image">
+                    <img src="/uploads/{{ $tshirt->image }}" width="200px">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
