@@ -15,7 +15,7 @@ class TshirtController extends Controller
     public function index()
     {
         $tshirts = Tshirt::latest()->paginate(5);
-
+        //how to order tshirts by id?
         return view('tshirts.index', compact('tshirts'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
@@ -39,13 +39,28 @@ class TshirtController extends Controller
     public function store(Request $request)
     {
         //maybe this only needs to validate the mandatory 'fillable' fields?
+        // not liking svg test image
         $request->validate([
             'name' => 'required',
             'bkg_colour' => 'required',
-            'country_purchased' => 'required'
+            'country_purchased' => 'required',
+            'image'=>'required|image|mimes:jpeg, png, jpg, gif, svg|max:2048'
         ]);
+        // atm image is ruiqred otehrwise get msg abotu nto hviang default value - 
+        // SQLSTATE[HY000]: General error: 1364 Field 'image' doesn't have a default value (SQL: insert into `tshirts` (`name`, `bkg_colour`, `country_purchased`, `updated_at`, `created_at`) values (sdfsdf, asdfsadf, asfsdf, 2021-12-07 21:13:54, 2021-12-07 21:13:54))
 
-        Tshirt::create($request->all());
+        //original code, before image uploader
+        // Tshirt::create($request->all());
+
+        $input = $request->all();
+        if ($image = $request->file('image')) {
+            $imageDestinationPath = 'uploads/';
+            $postImage = "tshirt_" . date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($imageDestinationPath, $postImage);
+            $input['image'] = "$postImage";
+        }
+
+        Tshirt::create($input);
 
         return redirect()->route('tshirts.index')
             ->with('success', 'New Tshirt created and added to collection successfully.');
@@ -87,7 +102,20 @@ class TshirtController extends Controller
             'bkg_colour' => 'required',
             'country_purchased' => 'required'
         ]);
-        $tshirt->update($request->all());
+        //orignal, before adding image uploader
+        // $tshirt->update($request->all());
+
+        $input = $request->all();
+        if ($image = $request->file('image')) {
+            $imageDestinationPath = 'uploads/';
+            $postImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($imageDestinationPath, $postImage);
+            $input['image'] = "$postImage";
+        }
+        else {
+            unset($input['image']);
+        }
+        $tshirt->update($input);
 
         return redirect()->route('tshirts.index')
             ->with('success', 'Tshirt details updated successfully');
@@ -101,10 +129,23 @@ class TshirtController extends Controller
      */
     public function destroy(Tshirt $tshirt)
     {
-        //how to soft delete?
+        //how to soft delete? delete works ok without a form - soft deletion happens by itself, as the Tshirt Model (and the db migration file) uses the SoftDelete class/feature - but how to reverse a soft delete, and where to see that as an enduser?
         $tshirt->delete();
 
         return redirect()->route('tshirts.index')
             ->with('success', 'Tshirt deleted successfully from collection');
     }
 }
+// My Custom DB Fields
+    // $table->id();
+    // $table->string('name', 255);
+    // $table->string('bkg_colour', 50)->nullable();
+    // //put country in separate ref table later
+    // $table->string('country_purchased', 255)->nullable();
+    // $table->timestamp('created_at')->useCurrent();
+    // $table->timestamp('updated_at')->nullable();
+
+// NEW DB Fields
+// $table->string('image');
+// $table->softDeletes('deleted_at');
+

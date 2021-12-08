@@ -19,8 +19,10 @@ class CreateTshirtsTable extends Migration
             $table->string('bkg_colour', 50)->nullable();
             //put country in separate ref table later
             $table->string('country_purchased', 255)->nullable();
+            $table->string('image');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->nullable();
+            $table->softDeletes('deleted_at');
         });
     }
 

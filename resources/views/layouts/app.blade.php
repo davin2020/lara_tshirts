@@ -28,10 +28,26 @@
             background-color: #5a2faf;
             color: white;
             text-align: center;
-            padding: 5px;
+            padding: 10px;
         }
         .container {
             margin-top: 20px
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        .table {
+            border-color: #5a2faf;
+        }
+        table.table-bordered{
+            border:1px solid #5a2faf;
+            /*margin-top:20px;*/
+        }
+        table.table-bordered > tbody > tr > th{
+            border:1px solid #5a2faf;
+        }
+        table.table-bordered > tbody > tr > td{
+            border:1px solid #5a2faf;
         }
         /* darker purple footer 572eaa */
     </style>
