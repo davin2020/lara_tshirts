@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>TShirt Collection App - Laravel 8 CRUD</h2>
+                <h1>TShirt Collection App - Laravel 8 CRUD</h1>
             </div>
             <div class="pull-right">
                 <a class="btn btn-success" href="{{ route('tshirts.create') }}" title="Create a tshirt"> <i class="fas fa-plus-circle"></i>
@@ -40,19 +40,22 @@
                 <td>
                     <form action="{{ route('tshirts.destroy', $tshirt->id) }}" method="POST">
 
-                        <a href="{{ route('tshirts.show', $tshirt->id) }}" title="show">
+                        <a href="{{ route('tshirts.show', $tshirt->id) }}" title="Show">
                             <i class="fas fa-eye text-success fa-lg"></i>
                         </a>
 
-                        <a href="{{ route('tshirts.edit', $tshirt->id) }}">
-                            <i class="fas fa-edit  fa-lg"></i>
-
+                        <!--  withot title=edit, this causes WAVE toool to show  error due to Empty link -->
+                        <a href="{{ route('tshirts.edit', $tshirt->id) }}" title="Edit">
+                            <i class="fas fa-edit  fa-lg" ></i>
+                            <!-- <i class="fas fa-edit  fa-lg" >EDIT</i> -->
+                            <!-- HAVING TEXT IN BEWTEEN i tags makes them appear as circles with !? in middle  -->
+<!-- READ AS WAVE ISSUES https://fontawesome.com/v5.15/how-to-use/on-the-web/other-topics/accessibility -->
                         </a>
 
                         @csrf
                         @method('DELETE')
 
-                        <button type="submit" title="delete" style="border: none; background-color:transparent;">
+                        <button type="submit" style="border: none; background-color:transparent;" title="Delete" >
                             <i class="fas fa-trash fa-lg text-danger"></i>
                         </button>
                     </form>
