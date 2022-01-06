@@ -1,4 +1,4 @@
-<html>
+<html lang="en">
 
 <head>
     <!-- where does title come from -->
@@ -21,7 +21,8 @@
             background-color: #cfc9dd;
         }
         .footer {
-            position: fixed;
+            /*pos fixed means footer covers pagination button on page1 but is ok on page2 for some reason ??*/
+            position: inherit;
             left: 0;
             bottom: 0;
             width: 100%;
@@ -33,7 +34,7 @@
         .container {
             margin-top: 20px
         }
-        h2 {
+        h1 {
             margin-bottom: 20px;
         }
         .table {
@@ -64,8 +65,8 @@
     </div>
     <div class="text-center footer">
 
-        <h5>Created by <a href="https://davin2020.github.io/" target="_blank">Davin Stirling</a></h5>
-
+        <!-- <h5>Created by <a href="https://davin2020.github.io/" target="_blank">Davin Stirling</a></h5> -->
+        <p>Created by <a href="https://davin2020.github.io/" target="_blank">Davin Stirling</a></p>
     </div>
 </body>
 
