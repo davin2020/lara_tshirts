@@ -35,7 +35,7 @@
                 <td>{{ $tshirt->name }}</td>
                 <td>{{ $tshirt->bkg_colour }}</td>
                 <td>{{ $tshirt->country_purchased }}</td>
-                <td><img src="/uploads/{{ $tshirt->image }}" width="200px"></td>
+                <td><img src="/uploads/{{ $tshirt->image }}" width="200px" alt="Tshirt with title {{ $tshirt->name }}"></td>
                 <td>{{ date_format($tshirt->created_at, 'jS M Y') }}</td>
                 <td>
                     <form action="{{ route('tshirts.destroy', $tshirt->id) }}" method="POST">
@@ -64,6 +64,10 @@
         @endforeach
     </table>
 
+<!-- need this to center pagination nav, as cant currently find where its being generated from -->
+<div class="text-center">
     {!! $tshirts->links() !!}
+    <!-- {{ $tshirts->links() }} -->
+</div>
 
 @endsection
