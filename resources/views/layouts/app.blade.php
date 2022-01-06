@@ -26,11 +26,23 @@
             left: 0;
             bottom: 0;
             width: 100%;
+            /*light blues #61ccec or #c5f2ff */
             background-color: #5a2faf;
             color: white;
             text-align: center;
             padding: 10px;
         }
+        .footer a {
+            color: yellow;
+        }
+        .footer a:visited {
+            color: white;
+        }
+        /*hover option needs to come AFTER visited option */
+        .footer a:hover {
+            color: #61ccec;
+        }
+        
         .container {
             margin-top: 20px
         }
@@ -51,6 +63,11 @@
             border:1px solid #5a2faf;
         }
         /* darker purple footer 572eaa */
+        /* to improve contrast for WAVE accessibility of pagnation controls */
+        .page-link {
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
     </style>
 
 </head>
